@@ -1,0 +1,12 @@
+---
+applications:
+- name: demo
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  instances: 1
+  random-route: true
+  path: "target/demo.jar"
+  services:
+    - redutan-mysql
+  env:
+    DEBUG: "true"
+    SPRING_PROFILES_ACTIVE: cloud
