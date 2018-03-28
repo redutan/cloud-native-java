@@ -27,29 +27,43 @@ public class CfClientDemoApplication {
     @Bean
     ReactorCloudFoundryClient cloudFoundryClient(
             ConnectionContext connectionContext, TokenProvider tokenProvider) {
-        return ReactorCloudFoundryClient.builder()
-                .connectionContext(connectionContext).tokenProvider(tokenProvider).build();
+        return ReactorCloudFoundryClient
+                .builder()
+                .connectionContext(connectionContext)
+                .tokenProvider(tokenProvider)
+                .build();
     }
 
     @Bean
     ReactorDopplerClient dopplerClient(ConnectionContext connectionContext, TokenProvider tokenProvider) {
-        return ReactorDopplerClient.builder().connectionContext(connectionContext)
-                .tokenProvider(tokenProvider).build();
+        return ReactorDopplerClient
+                .builder()
+                .connectionContext(connectionContext)
+                .tokenProvider(tokenProvider)
+                .build();
     }
 
     @Bean
     ReactorUaaClient uaaClient(ConnectionContext connectionContext, TokenProvider tokenProvider) {
-        return ReactorUaaClient.builder().connectionContext(connectionContext)
-                .tokenProvider(tokenProvider).build();
+        return ReactorUaaClient
+                .builder()
+                .connectionContext(connectionContext)
+                .tokenProvider(tokenProvider)
+                .build();
     }
 
     @Bean
     DefaultCloudFoundryOperations cloudFoundryOperations(
             CloudFoundryClient cloudFoundryClient, ReactorDopplerClient dopplerClient,
             ReactorUaaClient uaaClient, @Value("${cf.org}") String organization, @Value("${cf.space}") String space) {
-        return DefaultCloudFoundryOperations.builder()
-                .cloudFoundryClient(cloudFoundryClient).dopplerClient(dopplerClient)
-                .uaaClient(uaaClient).organization(organization).space(space).build();
+        return DefaultCloudFoundryOperations
+                .builder()
+                .cloudFoundryClient(cloudFoundryClient)
+                .dopplerClient(dopplerClient)
+                .uaaClient(uaaClient)
+                .organization(organization)
+                .space(space)
+                .build();
     }
 
     @Bean
@@ -57,14 +71,20 @@ public class CfClientDemoApplication {
         if (apiHost.contains("://")) {
             apiHost = apiHost.split("://")[1];
         }
-        return DefaultConnectionContext.builder().apiHost(apiHost).build();
+        return DefaultConnectionContext
+                .builder()
+                .apiHost(apiHost)
+                .build();
     }
 
     @Bean
     PasswordGrantTokenProvider tokenProvider(@Value("${cf.user}") String username,
                                              @Value("${cf.password}") String password) {
-        return PasswordGrantTokenProvider.builder().password(password)
-                .username(username).build();
+        return PasswordGrantTokenProvider
+                .builder()
+                .password(password)
+                .username(username)
+                .build();
     }
 }
 
