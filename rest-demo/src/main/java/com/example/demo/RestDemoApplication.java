@@ -27,6 +27,7 @@ public class RestDemoApplication {
     }
 }
 
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @RestController
 @RequestMapping("/v1/customers")
 class CustomerRestController {
