@@ -3,10 +3,8 @@ package com.example.eureka.client;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.Profile;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
@@ -29,4 +27,13 @@ class GreetingsRestController {
         String resolvedName = cn.orElse(name);
         return Collections.singletonMap("greeting", "Hello, " + resolvedName + "!");
     }
+}
+
+@Profile({ "default", "insecure" })
+@RestController
+@RequestMapping("/greet/{name}")
+class DefaultGreetingsRestController {
+    @GetMapping
+    Map<String, String> hi(@PathVariable String name) {
+        return Collections.singletonMap("greeting", "Hello, " + name + "!"); }
 }
