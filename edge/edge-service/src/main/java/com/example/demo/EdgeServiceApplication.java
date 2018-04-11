@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
@@ -18,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 @EnableDiscoveryClient
+@EnableFeignClients
 @SpringBootApplication
 public class EdgeServiceApplication {
 
